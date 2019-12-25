@@ -31,9 +31,10 @@ class Sock():
     def send_message(self):
         try:
             self.__sock.connect(self.__address)
-            self.__sock.sendall(self.__message)
+            print(self.__message.get_message().encode())
+            self.__sock.sendall(self.__message.get_message().encode())
             self.__handle_respond()
-        except socket.error as ex:
+        except Exception as ex:
             print("send message error:", ex)
             return
         finally:

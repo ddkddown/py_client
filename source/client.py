@@ -17,9 +17,9 @@ class Client():
             nm_ps = table.login_input_message()
             id = user.User(nm_ps[0], nm_ps[1])
             #给服务端发送用户名密码消息
-            
-            print("--")
-            pass
+            connect = sock.Sock()
+            connect.load_message(message.Message('1', '5', '0', id.username, id.password))
+            connect.send_message()
         elif '2' == choose:
             print("bye ~ see you then")
         else:
