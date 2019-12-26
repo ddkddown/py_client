@@ -16,13 +16,18 @@ class Sock():
     def __handle_respond(self):
         try:
             self.__respond = self.__sock.recv(self.__respond_size)
-            print(self.__respond)
+            print(self.__respond.decode()[1])
+            self.__respond = self.__respond.decode()
             if self.__respond[1] == '1':
                 self.__flag = True
         except socket.error as ex:
             print("recv message error:", ex)
             return
         finally:
+            if self.__flag == True:
+                print("recv true")
+            else:
+                print("recv false")
             return
 
     def load_message(self, mess: Message):
@@ -31,8 +36,7 @@ class Sock():
     def send_message(self):
         try:
             self.__sock.connect(self.__address)
-            print(self.__message.get_message().encode())
-            self.__sock.sendall(self.__message.get_message().encode())
+            self.__sock.sendall(self.__message.get_message().encode());
             self.__handle_respond()
         except Exception as ex:
             print("send message error:", ex)
