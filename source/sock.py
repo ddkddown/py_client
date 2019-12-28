@@ -1,6 +1,10 @@
-import socket
 from message import Message
 from message import Respond
+import tkinter as tk
+import tkinter.scrolledtext as tst
+import tkinter.filedialog
+import socket
+from editwindow import Application
 
 
 class Sock():
@@ -20,12 +24,17 @@ class Sock():
             self.__respond = self.__respond.decode()
             if self.__respond[1] == '1':
                 self.__flag = True
+                root = tk.Tk()
+                root.title('somewhere')
+                app = Application(master=root)
+                app.mainloop()
+
         except socket.error as ex:
             print("recv message error:", ex)
             return
         finally:
             if self.__flag == True:
-                print("recv true")
+                print("byebye")
             else:
                 print("recv false")
             return
