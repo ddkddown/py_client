@@ -26,7 +26,7 @@ class Client():
             if connect.send_message() == True:
                 root = tk.Tk()
                 root.title('somewhere')
-                app = Application(master=root)
+                app = Application(master=root, username=id.username)
                 app.mainloop()
 
 

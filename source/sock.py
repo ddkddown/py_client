@@ -34,7 +34,7 @@ class Sock():
         success = False
         try:
             self.__sock.connect(self.__address)
-            self.__sock.sendall(self.__message.get_message().encode());
+            self.__sock.sendall(self.__message.get_message().encode())
             success = self.__handle_respond()
         except Exception as ex:
             success = False

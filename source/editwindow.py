@@ -7,10 +7,11 @@ import tkinter.filedialog
 
 
 class Application(tk.Frame):
-    def __init__(self, master=None):
+    def __init__(self, master=None, username=''):
         tk.Frame.__init__(self, master)
         self.grid()
         self.createWidgets()
+        self.username = username
         self.__root = master
 
     def createWidgets(self):
@@ -33,7 +34,7 @@ class Application(tk.Frame):
     def funcSave(self):
         str1 = self.textEdit.get(1.0, tk.END)
         connect = Sock()
-        connect.load_message(Message(type='2', content=str1))
+        connect.load_message(Message(type='2', user_name=self.username, content=str1))
         connect.send_message()
         # 暂不保存到本地
         '''
