@@ -1,7 +1,11 @@
+from editwindow import Application
 import user
 import message
 import menu
 import sock
+import tkinter as tk
+import tkinter.scrolledtext as tst
+import tkinter.filedialog
 
 
 class Client():
@@ -19,7 +23,14 @@ class Client():
             #给服务端发送用户名密码消息
             connect = sock.Sock()
             connect.load_message(message.Message('1', '5', '0', id.username, id.password))
-            connect.send_message()
+            if connect.send_message() == True:
+                root = tk.Tk()
+                root.title('somewhere')
+                app = Application(master=root)
+                app.mainloop()
+
+
+
         elif '2' == choose:
             print("bye ~ see you then")
         else:

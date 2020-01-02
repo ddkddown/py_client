@@ -1,3 +1,6 @@
+from message import Message
+from message import Respond
+from sock import Sock
 import tkinter as tk
 import tkinter.scrolledtext as tst
 import tkinter.filedialog
@@ -8,7 +11,7 @@ class Application(tk.Frame):
         tk.Frame.__init__(self, master)
         self.grid()
         self.createWidgets()
-        self.__root  = master
+        self.__root = master
 
     def createWidgets(self):
         self.textEdit = tst.ScrolledText(self, width=80, height=20)
@@ -29,10 +32,15 @@ class Application(tk.Frame):
 
     def funcSave(self):
         str1 = self.textEdit.get(1.0, tk.END)
+        connect = Sock()
+        connect.load_message(Message(type='2', content=str1))
+        connect.send_message()
+        # 暂不保存到本地
+        '''
         fname = tk.filedialog.asksaveasfilename(filetypes=[('文本文件', '.txt')])
         with open(fname, 'w') as f:
             f.write(str1)
+        '''
 
     def funcQuit(self):
         self.__root.destroy()
-
