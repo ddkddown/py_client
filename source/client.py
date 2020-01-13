@@ -6,14 +6,17 @@ import sock
 import tkinter as tk
 import tkinter.scrolledtext as tst
 import tkinter.filedialog
+import logfile
 
 
 class Client():
     def __init__(self):
+        self.__logger = logfile.somewhere_logger()
         pass
 
     def start(self):
         # 显示初始菜单
+        self.__logger.somewhere_info("client start!")
         table = menu.Menu()
         table.login_menu()
         choose = input()
