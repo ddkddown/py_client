@@ -4,6 +4,7 @@ from sock import Sock
 import tkinter as tk
 import tkinter.scrolledtext as tst
 import tkinter.filedialog
+import logfile
 
 
 class Application(tk.Frame):
@@ -13,6 +14,7 @@ class Application(tk.Frame):
         self.createWidgets()
         self.username = username
         self.__root = master
+        self.__logger = logfile.somewhere_logger()
 
     def createWidgets(self):
         self.textEdit = tst.ScrolledText(self, width=80, height=20)
@@ -47,9 +49,9 @@ class Application(tk.Frame):
         str2 = ''
         connect.load_message(Message(type='2', is_end='5', user_name=self.username, head='ddktest', content=str2))
         if connect.send_message():
-            print("send message success")
+            self.__logger.somewhere_info("send message success")
         else:
-            print("send message fail")
+            self.__logger.somewhere_warning("send message failed!")
 
 
     def funcQuit(self):

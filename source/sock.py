@@ -1,6 +1,7 @@
 from message import Message
 from message import Respond
 import socket
+import logfile
 
 
 class Sock():
@@ -11,6 +12,7 @@ class Sock():
         self.__address = (self.__ip, self.__port)
         self.__sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.__respond_size = 2
+        self.__logger = logfile.somewhere_logger()
 
     def __handle_respond(self):
         success = False
@@ -23,7 +25,7 @@ class Sock():
 
         except socket.error as ex:
             success = False
-            print("recv message error:", ex)
+            self.__logger.somewhere_error("recv message error:", ex)
         finally:
             return success
 
@@ -40,7 +42,7 @@ class Sock():
         except Exception as ex:
             success = False
             self.__sock.close()
-            print("send message error:", ex)
+            self.__logger.somewhere_error("send message error:", ex)
         finally:
             if wait:
                 self.__sock.close()

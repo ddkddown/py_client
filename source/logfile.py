@@ -13,19 +13,19 @@ class somewhere_logger():
     logger.addHandler(handler)
     logger.setLevel(logging.DEBUG)
 
-    def somewhere_debug(self, msg):
+    def somewhere_debug(self, *msg):
         self.logger.debug(msg)
 
-    def somewhere_info(self, msg):
+    def somewhere_info(self, *msg):
         self.logger.info(msg)
 
-    def somewhere_warning(self,msg):
+    def somewhere_warning(self, *msg):
         self.logger.warning(msg)
 
-    def somewhere_error(self,msg):
+    def somewhere_error(self, *msg):
         self.logger.error(msg)
 
-    def somewhere_critical(self,msg):
+    def somewhere_critical(self, *msg):
         self.logger.critical(msg)
 
 
